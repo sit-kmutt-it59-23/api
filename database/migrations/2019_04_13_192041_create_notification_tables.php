@@ -13,10 +13,26 @@ class CreateNotificationTables extends Migration
      */
     public function up()
     {
-        Schema::create('notification_tables', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+        DB::beginTransaction();
+
+        Schema::create('notifications', function (Blueprint $table) {
+            $table->unsignedBigInteger('id')->autoIncrement();
+            $table->unsignedBigInteger('user_id');
+            $table->text("content");
+            $table->dateTime("read_at")->nullable();
+            $table->dateTime("expired_at")->nullable();
+            $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->datetime('updated_at')
+                ->default(
+                    DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+                );
+            
+            $table->primary('id');
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onUpdate('restrict')->onDelete('cascade');
         });
+
+        DB::commit();
     }
 
     /**
@@ -26,6 +42,6 @@ class CreateNotificationTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notification_tables');
+        Schema::dropIfExists('notifications');
     }
 }
