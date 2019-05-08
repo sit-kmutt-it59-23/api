@@ -16,7 +16,7 @@ class CreateNotificationTables extends Migration
         DB::beginTransaction();
 
         Schema::create('notifications', function (Blueprint $table) {
-            $table->bigIncrement('id')->unsigned();
+            $table->bigIncrements('id')->unsigned();
             $table->unsignedBigInteger('user_id');
             $table->text('content');
             $table->dateTime('read_at')->nullable();
