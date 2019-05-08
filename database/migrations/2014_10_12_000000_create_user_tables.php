@@ -26,8 +26,6 @@ class CreateUserTables extends Migration
                 ->default(
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
                 );
-
-            $table->primary('id');
         });
 
         Schema::create('user_data', function (Blueprint $table) {
