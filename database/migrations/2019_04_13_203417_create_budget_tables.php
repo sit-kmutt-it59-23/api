@@ -13,10 +13,39 @@ class CreateBudgetTables extends Migration
      */
     public function up()
     {
-        Schema::create('budget_tables', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+        DB::beginTransaction();
+
+        Schema::create('budgets', function (Blueprint $table) {
+            $table->increments('id')->unsigned();
+            $table->year('edu_year');
+            $table->float('amount');
+            $table->float('remaining_amount');
+            $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->datetime('updated_at')
+                ->default(
+                    DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+                );
         });
+
+        Schema::create('organization_budget', function (Blueprint $table) {
+            $table->increments('id')->unsigned();
+            $table->unsignedInteger('organization_id');
+            $table->unsignedInteger('budget_id');
+            $table->float('amount');
+            $table->float('remaining_amount');
+            $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->datetime('updated_at')
+                ->default(
+                    DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+                );
+            
+            $table->foreign('organization_id')->references('id')->on('organizations')
+                ->onUpdate('restrict')->onDelete('cascade');
+            $table->foreign('budget_id')->references('id')->on('budgets')
+                ->onUpdate('restrict')->onDelete('cascade');
+        });
+
+        DB::commit();
     }
 
     /**
@@ -26,6 +55,7 @@ class CreateBudgetTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('budget_tables');
+        Schema::dropIfExists('organization_budget');
+        Schema::dropIfExists('budgets');
     }
 }
