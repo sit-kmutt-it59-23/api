@@ -170,7 +170,7 @@ class CreateDocumentTables extends Migration
 
             $table->foreign('document_id')->references('id')->on('documents')
                 ->onUpdate('restrict')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('organiation_user')
+            $table->foreign('user_id')->references('id')->on('organization_user')
                 ->onUpdate('restrict')->onDelete('cascade');
             $table->foreign('children_of')->references('id')->on('document_comments')
                 ->onUpdate('restrict')->onDelete('cascade');
