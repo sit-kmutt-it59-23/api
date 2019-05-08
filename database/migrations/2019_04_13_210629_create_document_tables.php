@@ -110,7 +110,7 @@ class CreateDocumentTables extends Migration
         Schema::create('document_members', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
             $table->bigInteger('document_id')->unsigned();
-            $table->bigInteger('user_id');
+            $table->bigInteger('user_id')->unsigned();
             $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->datetime('updated_at')
                 ->default(
@@ -126,7 +126,7 @@ class CreateDocumentTables extends Migration
         Schema::create('document_step_users', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
             $table->bigInteger('document_id')->unsigned();
-            $table->bigInteger('user_id');
+            $table->bigInteger('user_id')->unsigned();
             $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->datetime('updated_at')
                 ->default(
@@ -142,7 +142,7 @@ class CreateDocumentTables extends Migration
         Schema::create('document_approvals', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
             $table->bigInteger('document_id')->unsigned();
-            $table->bigInteger('user_id');
+            $table->bigInteger('user_id')->unsigned();
             $table->boolean('is_passed');
             $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->datetime('updated_at')
@@ -159,9 +159,9 @@ class CreateDocumentTables extends Migration
         Schema::create('document_comments', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
             $table->bigInteger('document_id')->unsigned();
-            $table->bigInteger('user_id');
+            $table->bigInteger('user_id')->unsigned();
             $table->longText('data');
-            $table->bigInteger('children_of')->nullable();
+            $table->bigInteger('children_of')->unsigned()->nullable();
             $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->datetime('updated_at')
                 ->default(
