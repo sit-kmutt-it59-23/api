@@ -56,12 +56,6 @@ class User extends Authenticable
 					->withTimestamps();
 	}
 
-	public function roles()
-	{
-		return $this->belongsToMany(\App\Models\Role::class)
-					->withPivot('id');
-	}
-
 	public function user_datum()
 	{
 		return $this->hasOne(\App\Models\UserDatum::class);

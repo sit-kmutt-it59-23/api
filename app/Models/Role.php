@@ -31,16 +31,4 @@ class Role extends EntrustRole
 		'display_name',
 		'description'
 	];
-
-	public function permissions()
-	{
-		return $this->belongsToMany(\App\Models\Permission::class)
-					->withPivot('id');
-	}
-
-	public function users()
-	{
-		return $this->belongsToMany(\App\Models\User::class)
-					->withPivot('id');
-	}
 }
