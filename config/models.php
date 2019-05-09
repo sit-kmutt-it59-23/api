@@ -52,7 +52,7 @@ return [
         |
         */
 
-        'parent' => Reliese\Database\Eloquent\Model::class,
+        'parent' => Illuminate\Database\Eloquent\Model::class,
 
         /*
         |--------------------------------------------------------------------------
@@ -227,7 +227,7 @@ return [
         */
 
         'guarded' => [
-            // 'created_by', 'updated_by'
+            'id', 'remember_token', 'deleted_at', 'created_by', 'updated_by'
         ],
 
         /*
@@ -263,6 +263,22 @@ return [
 
         'except' => [
             'migrations',
+        ],
+
+        'permissions' => [
+            'parent' => Zizaco\Entrust\EntrustPermission::class,
+        ],
+
+        'roles' => [
+            'parent' => Zizaco\Entrust\EntrustRole::class,
+        ],
+
+        'users' => [
+            'parent' => Illuminate\Foundation\Auth\User::class,
+            'use' => [
+                Illuminate\Notifications\Notifiable::class,
+                Zizaco\Entrust\Traits\EntrustUserTrait::class,
+            ],
         ],
     ],
 
