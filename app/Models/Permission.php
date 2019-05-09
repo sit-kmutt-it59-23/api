@@ -7,7 +7,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model as Eloquent;
+use Zizaco\Entrust\EntrustPermission;
 
 /**
  * Class Permission
@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  *
  * @package App\Models
  */
-class Permission extends Eloquent
+class Permission extends EntrustPermission
 {
 	protected $fillable = [
 		'name',

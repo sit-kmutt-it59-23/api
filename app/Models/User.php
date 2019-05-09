@@ -7,7 +7,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model as Eloquent;
+use Illuminate\Foundation\Auth\User as Authenticable;
+use Illuminate\Database\Eloquent\SoftDeletes as SoftDeletable;
+use Illuminate\Notifications\Notifiable;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 /**
  * Class User
@@ -27,9 +30,9 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  *
  * @package App\Models
  */
-class User extends Eloquent
+class User extends Authenticable
 {
-	use \Illuminate\Database\Eloquent\SoftDeletes;
+    use EntrustUserTrait, Notifiable, SoftDeletable;
 
 	protected $hidden = [
 		'password',
