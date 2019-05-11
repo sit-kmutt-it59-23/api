@@ -54,6 +54,7 @@ class CreateDocumentTables extends Migration
         Schema::create('document_versions', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->unsignedInteger('type_id');
+            $table->string('name');
             $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->datetime('updated_at')
                 ->default(

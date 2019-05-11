@@ -19,6 +19,7 @@ class CreateNotificationTables extends Migration
             $table->bigIncrements('id')->unsigned();
             $table->unsignedBigInteger('user_id');
             $table->text('content');
+            $table->text('link')->nullable();
             $table->dateTime('read_at')->nullable();
             $table->dateTime('expired_at')->nullable();
             $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
