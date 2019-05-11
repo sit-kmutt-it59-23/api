@@ -19,7 +19,7 @@ class CreateDocumentTables extends Migration
             $table->increments('id')->unsigned();
             $table->string('name');
             $table->string('description')->nullable();
-            $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->datetime('created_at')->useCurrent();
             $table->datetime('updated_at')
                 ->default(
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
@@ -60,7 +60,7 @@ class CreateDocumentTables extends Migration
             $table->float('budget_amount');
             $table->dateTime('start_at');
             $table->dateTime('end_at');
-            $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->datetime('created_at')->useCurrent();
             $table->datetime('updated_at')
                 ->default(
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
@@ -76,7 +76,7 @@ class CreateDocumentTables extends Migration
             $table->increments('id')->unsigned();
             $table->unsignedInteger('type_id');
             $table->string('name');
-            $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->datetime('created_at')->useCurrent();
             $table->datetime('updated_at')
                 ->default(
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
@@ -93,7 +93,7 @@ class CreateDocumentTables extends Migration
             $table->string('type', 64);
             $table->longText('default_value')->nullable();
             $table->json('data')->nullable();
-            $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->datetime('created_at')->useCurrent();
             $table->datetime('updated_at')
                 ->default(
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
@@ -112,7 +112,7 @@ class CreateDocumentTables extends Migration
             $table->string('name_en')->nullable();
             $table->json('data');
             $table->boolean('is_draft')->default(0);
-            $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->datetime('created_at')->useCurrent();
             $table->datetime('updated_at')
                 ->default(
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
@@ -130,7 +130,7 @@ class CreateDocumentTables extends Migration
             $table->bigIncrements('id')->unsigned();
             $table->bigInteger('document_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
-            $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->datetime('created_at')->useCurrent();
             $table->datetime('updated_at')
                 ->default(
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
@@ -146,7 +146,7 @@ class CreateDocumentTables extends Migration
             $table->bigIncrements('id')->unsigned();
             $table->bigInteger('document_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
-            $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->datetime('created_at')->useCurrent();
             $table->datetime('updated_at')
                 ->default(
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
@@ -163,7 +163,7 @@ class CreateDocumentTables extends Migration
             $table->bigInteger('document_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
             $table->boolean('is_passed');
-            $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->datetime('created_at')->useCurrent();
             $table->datetime('updated_at')
                 ->default(
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
@@ -181,7 +181,7 @@ class CreateDocumentTables extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->longText('data');
             $table->bigInteger('children_of')->unsigned()->nullable();
-            $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->datetime('created_at')->useCurrent();
             $table->datetime('updated_at')
                 ->default(
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')

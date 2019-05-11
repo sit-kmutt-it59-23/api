@@ -20,7 +20,7 @@ class CreateBudgetTables extends Migration
             $table->year('edu_year');
             $table->float('amount');
             $table->float('remaining_amount');
-            $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->datetime('created_at')->useCurrent();
             $table->datetime('updated_at')
                 ->default(
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
@@ -33,7 +33,7 @@ class CreateBudgetTables extends Migration
             $table->unsignedInteger('budget_id');
             $table->float('amount');
             $table->float('remaining_amount');
-            $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->datetime('created_at')->useCurrent();
             $table->datetime('updated_at')
                 ->default(
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')

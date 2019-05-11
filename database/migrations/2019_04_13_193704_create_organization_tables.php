@@ -37,7 +37,7 @@ class CreateOrganizationTables extends Migration
             $table->datetime('allowed_at')->nullable();
             $table->datetime('expired_at')->nullable();
             $table->datetime('deleted_at')->nullable();
-            $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->datetime('created_at')->useCurrent();
             $table->datetime('updated_at')
                 ->default(
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
@@ -60,7 +60,7 @@ class CreateOrganizationTables extends Migration
             $table->unsignedInteger('organization_id');
             $table->unsignedInteger('level_id');
             $table->datetime('allowed_at')->nullable();
-            $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->datetime('created_at')->useCurrent();
             $table->datetime('updated_at')
                 ->default(
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
