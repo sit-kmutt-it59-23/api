@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sun, 14 Apr 2019 20:05:04 +0700.
+ * Date: Sat, 11 May 2019 14:51:46 +0700.
  */
 
 namespace App\Models;
@@ -13,10 +13,9 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  * Class Document
  * 
  * @property int $id
- * @property int $organization_id
+ * @property int $project_id
  * @property int $type_id
  * @property int $version_id
- * @property int $category_id
  * @property string $name
  * @property string $name_en
  * @property string $data
@@ -24,8 +23,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * 
- * @property \App\Models\DocumentCategory $document_category
- * @property \App\Models\Organization $organization
+ * @property \App\Models\DocumentProject $document_project
  * @property \App\Models\DocumentType $document_type
  * @property \App\Models\DocumentVersion $document_version
  * @property \Illuminate\Database\Eloquent\Collection $document_approvals
@@ -38,32 +36,25 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 class Document extends Eloquent
 {
 	protected $casts = [
-		'organization_id' => 'int',
+		'project_id' => 'int',
 		'type_id' => 'int',
 		'version_id' => 'int',
-		'category_id' => 'int',
 		'is_draft' => 'bool'
 	];
 
 	protected $fillable = [
-		'organization_id',
+		'project_id',
 		'type_id',
 		'version_id',
-		'category_id',
 		'name',
 		'name_en',
 		'data',
 		'is_draft'
 	];
 
-	public function document_category()
+	public function document_project()
 	{
-		return $this->belongsTo(\App\Models\DocumentCategory::class, 'category_id');
-	}
-
-	public function organization()
-	{
-		return $this->belongsTo(\App\Models\Organization::class);
+		return $this->belongsTo(\App\Models\DocumentProject::class, 'project_id');
 	}
 
 	public function document_type()

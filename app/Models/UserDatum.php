@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  * @property string $lastname
  * @property string $student_id
  * @property string $tel_no
- * @property string $remember_token
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * 
@@ -33,10 +32,6 @@ class UserDatum extends Eloquent
 
 	protected $casts = [
 		'user_id' => 'int'
-	];
-
-	protected $hidden = [
-		'remember_token'
 	];
 
 	protected $fillable = [

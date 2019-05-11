@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  * @property int $user_id
  * @property int $organization_id
  * @property int $level_id
+ * @property \Carbon\Carbon $allowed_at
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * 
@@ -37,6 +38,10 @@ class OrganizationUser extends Eloquent
 		'user_id' => 'int',
 		'organization_id' => 'int',
 		'level_id' => 'int'
+	];
+
+	protected $dates = [
+		'allowed_at',
 	];
 
 	protected $fillable = [

@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  * @property string $description
  * @property string $slogan
  * @property string $logo_path
+ * @property \Carbon\Carbon $allowed_at
  * @property \Carbon\Carbon $expired_at
  * @property string $deleted_at
  * @property \Carbon\Carbon $created_at
@@ -43,7 +44,8 @@ class Organization extends Eloquent
 	];
 
 	protected $dates = [
-		'expired_at'
+		'allowed_at',
+		'expired_at',
 	];
 
 	protected $fillable = [

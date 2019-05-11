@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  * @property int $id
  * @property int $user_id
  * @property string $content
+ * @property string $link
  * @property \Carbon\Carbon $read_at
  * @property \Carbon\Carbon $expired_at
  * @property \Carbon\Carbon $created_at
@@ -38,7 +39,7 @@ class Notification extends Eloquent
 	protected $fillable = [
 		'user_id',
 		'content',
-		'read_at',
+		'link',
 		'expired_at'
 	];
 

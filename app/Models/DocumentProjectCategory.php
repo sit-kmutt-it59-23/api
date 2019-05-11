@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sun, 14 Apr 2019 20:05:04 +0700.
+ * Date: Sat, 11 May 2019 14:52:57 +0700.
  */
 
 namespace App\Models;
@@ -10,17 +10,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class DocumentCategory
+ * Class DocumentProjectCategory
  * 
  * @property int $id
  * @property string $name
  * @property string $description
  * 
- * @property \Illuminate\Database\Eloquent\Collection $documents
+ * @property \Illuminate\Database\Eloquent\Collection $document_projects
  *
  * @package App\Models
  */
-class DocumentCategory extends Eloquent
+class DocumentProjectCategory extends Eloquent
 {
 	public $timestamps = false;
 
@@ -29,8 +29,8 @@ class DocumentCategory extends Eloquent
 		'description'
 	];
 
-	public function documents()
+	public function document_projects()
 	{
-		return $this->hasMany(\App\Models\Document::class, 'category_id');
+		return $this->hasMany(\App\Models\DocumentProject::class, 'category_id');
 	}
 }
