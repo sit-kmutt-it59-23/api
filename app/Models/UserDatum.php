@@ -13,9 +13,9 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  * Class UserDatum
  * 
  * @property int $user_id
- * @property string $firstname
- * @property string $middlename
- * @property string $lastname
+ * @property string $first_name
+ * @property string $middle_name
+ * @property string $last_name
  * @property string $student_id
  * @property string $tel_no
  * @property \Carbon\Carbon $created_at
@@ -35,10 +35,10 @@ class UserDatum extends Eloquent
 	];
 
 	protected $fillable = [
-		'firstname',
-		'middlename',
-		'lastname',
 		'student_id',
+		'first_name',
+		'middle_name',
+		'last_name',
 		'tel_no'
 	];
 

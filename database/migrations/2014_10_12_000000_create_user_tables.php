@@ -30,9 +30,9 @@ class CreateUserTables extends Migration
 
         Schema::create('user_data', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
-            $table->string('firstname', 64);
-            $table->string('middlename', 64)->nullable();
-            $table->string('lastname', 64);
+            $table->string('first_name', 64);
+            $table->string('middle_name', 64)->nullable();
+            $table->string('last_name', 64);
             $table->string('student_id', 11)->nullable();
             $table->string('tel_no', 15)->nullable();
             $table->datetime('created_at')->useCurrent();
