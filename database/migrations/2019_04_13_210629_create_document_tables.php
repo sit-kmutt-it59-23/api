@@ -45,10 +45,31 @@ class CreateDocumentTables extends Migration
                 ->onUpdate('restrict')->onDelete('cascade');
         });
 
-        Schema::create('document_categories', function (Blueprint $table) {
+        Schema::create('document_project_categories', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('name');
             $table->string('description')->nullable();
+        });
+
+        Schema::create('document_projects', function (Blueprint $table) {
+            $table->increments('id')->unsigned();
+            $table->unsignedInteger('organization_id');
+            $table->unsignedInteger('category_id');
+            $table->string('name');
+            $table->string('name_en')->nullable();
+            $table->float('budget_amount');
+            $table->dateTime('start_at');
+            $table->dateTime('end_at');
+            $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->datetime('updated_at')
+                ->default(
+                    DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+                );
+            
+            $table->foreign('organization_id')->references('id')->on('organizations')
+                ->onUpdate('restrict')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('document_project_categories')
+                ->onUpdate('restrict')->onDelete('cascade');   
         });
 
         Schema::create('document_versions', function (Blueprint $table) {
@@ -84,10 +105,9 @@ class CreateDocumentTables extends Migration
 
         Schema::create('documents', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
-            $table->unsignedInteger('organization_id');
+            $table->unsignedInteger('project_id');
             $table->unsignedInteger('type_id');
             $table->unsignedInteger('version_id');
-            $table->unsignedInteger('category_id');
             $table->string('name');
             $table->string('name_en')->nullable();
             $table->json('data');
@@ -98,13 +118,11 @@ class CreateDocumentTables extends Migration
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
                 );
             
-            $table->foreign('organization_id')->references('id')->on('organizations')
+            $table->foreign('project_id')->references('id')->on('document_projects')
                 ->onUpdate('restrict')->onDelete('cascade');
             $table->foreign('type_id')->references('id')->on('document_types')
                 ->onUpdate('restrict')->onDelete('cascade');
             $table->foreign('version_id')->references('id')->on('document_versions')
-                ->onUpdate('restrict')->onDelete('cascade');
-            $table->foreign('category_id')->references('id')->on('document_categories')
                 ->onUpdate('restrict')->onDelete('cascade');
         });
 
@@ -194,7 +212,8 @@ class CreateDocumentTables extends Migration
         Schema::dropIfExists('documents');
         Schema::dropIfExists('document_form_element');
         Schema::dropIfExists('document_versions');
-        Schema::dropIfExists('document_categories');
+        Schema::dropIfExists('document_projects');
+        Schema::dropIfExists('document_project_categories');
         Schema::dropIfExists('document_type_step');
         Schema::dropIfExists('document_steps');
         Schema::dropIfExists('document_types');
