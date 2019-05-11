@@ -35,7 +35,6 @@ class CreateUserTables extends Migration
             $table->string('lastname', 64);
             $table->string('student_id', 11)->nullable();
             $table->string('tel_no', 15)->nullable();
-            $table->rememberToken();
             $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->datetime('updated_at')
                 ->default(
