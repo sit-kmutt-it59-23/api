@@ -34,6 +34,7 @@ class CreateOrganizationTables extends Migration
             $table->string('description')->nullable();
             $table->string('slogan', 128)->nullable();
             $table->string('logo_path')->nullable();
+            $table->datetime('allowed_at')->nullable();
             $table->datetime('expired_at')->nullable();
             $table->datetime('deleted_at')->nullable();
             $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
@@ -58,6 +59,7 @@ class CreateOrganizationTables extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedInteger('organization_id');
             $table->unsignedInteger('level_id');
+            $table->datetime('allowed_at')->nullable();
             $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->datetime('updated_at')
                 ->default(
