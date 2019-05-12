@@ -17,7 +17,7 @@ class CreateDocumentTables extends Migration
 
         Schema::create('document_types', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('description')->nullable();
             $table->datetime('created_at')->useCurrent();
             $table->datetime('updated_at')
@@ -46,7 +46,7 @@ class CreateDocumentTables extends Migration
 
         Schema::create('document_project_categories', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('description')->nullable();
         });
 
@@ -117,6 +117,7 @@ class CreateDocumentTables extends Migration
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
                 );
             
+            $table->unique(['project_id', 'type_id']);
             $table->foreign('project_id')->references('id')->on('document_projects')
                 ->onUpdate('restrict')->onDelete('cascade');
             $table->foreign('type_id')->references('id')->on('document_types')

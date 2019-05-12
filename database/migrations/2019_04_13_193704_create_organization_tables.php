@@ -17,12 +17,12 @@ class CreateOrganizationTables extends Migration
 
         Schema::create('organization_types', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('name', 128);
+            $table->string('name', 128)->unique();
         });
 
         Schema::create('organization_categories', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('name', 128);
+            $table->string('name', 128)->unique();
         });
 
         Schema::create('organizations', function (Blueprint $table) {

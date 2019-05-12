@@ -37,7 +37,8 @@ class CreateBudgetTables extends Migration
                 ->default(
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
                 );
-            
+
+            $table->unique(['organization_id', 'budget_id']);
             $table->foreign('organization_id')->references('id')->on('organizations')
                 ->onUpdate('restrict')->onDelete('cascade');
             $table->foreign('budget_id')->references('id')->on('budgets')
