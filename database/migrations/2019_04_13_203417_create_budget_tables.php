@@ -28,7 +28,6 @@ class CreateBudgetTables extends Migration
         });
 
         Schema::create('organization_budget', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
             $table->unsignedInteger('organization_id');
             $table->unsignedInteger('budget_id');
             $table->float('amount');

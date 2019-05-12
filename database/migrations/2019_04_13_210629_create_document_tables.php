@@ -32,7 +32,6 @@ class CreateDocumentTables extends Migration
         });
 
         Schema::create('document_type_step', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
             $table->unsignedInteger('type_id');
             $table->unsignedInteger('step_id');
             $table->unsignedInteger('order');
