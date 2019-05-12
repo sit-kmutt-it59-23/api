@@ -32,7 +32,9 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
  */
 class User extends Authenticable
 {
-    use EntrustUserTrait, Notifiable, SoftDeletable;
+	use Notifiable;
+	use SoftDeletable { restore as private restoreA; }
+	use EntrustUserTrait { restore as private restoreB; }
 
 	protected $hidden = [
 		'password',
@@ -52,7 +54,9 @@ class User extends Authenticable
 	public function organizations()
 	{
 		return $this->belongsToMany(\App\Models\Organization::class)
-					->withPivot('id', 'level_id')
+					->using(App\Models\OrganizationUser::class)
+					->as('members')
+					->withPivot('level_id', 'allowed_at')
 					->withTimestamps();
 	}
 
@@ -60,4 +64,10 @@ class User extends Authenticable
 	{
 		return $this->hasOne(\App\Models\UserDatum::class);
 	}
+
+	public function restore()
+    {
+        $this->restoreA();
+        $this->restoreB();
+    }
 }

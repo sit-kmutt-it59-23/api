@@ -43,7 +43,9 @@ class Budget extends Eloquent
 	public function organizations()
 	{
 		return $this->belongsToMany(\App\Models\Organization::class, 'organization_budget')
-					->withPivot('id', 'amount', 'remaining_amount')
+					->using(\App\Models\OrganizationBudget::class)
+					->as('budget_histories')
+					->withPivot('amount', 'remaining_amount')
 					->withTimestamps();
 	}
 }

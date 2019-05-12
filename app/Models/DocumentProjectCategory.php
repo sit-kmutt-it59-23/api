@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  * @property string $name
  * @property string $description
  * 
- * @property \Illuminate\Database\Eloquent\Collection $document_projects
+ * @property \Illuminate\Database\Eloquent\Collection $organizations
  *
  * @package App\Models
  */
@@ -29,8 +29,12 @@ class DocumentProjectCategory extends Eloquent
 		'description'
 	];
 
-	public function document_projects()
+	public function organizations()
 	{
-		return $this->hasMany(\App\Models\DocumentProject::class, 'category_id');
+		return $this->belongsToMany(\App\Models\Organization::class, 'document_projects', 'category_id')
+					->using(\App\Models\DocumentProject::class)
+					->as('projects')
+					->withPivot('name', 'name_en', 'budget_amount', 'start_at', 'end_at')
+					->withTimestamps();
 	}
 }

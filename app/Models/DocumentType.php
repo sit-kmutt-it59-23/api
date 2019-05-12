@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * 
- * @property \Illuminate\Database\Eloquent\Collection $document_type_steps
+ * @property \Illuminate\Database\Eloquent\Collection $document_steps
  * @property \Illuminate\Database\Eloquent\Collection $document_versions
  * @property \Illuminate\Database\Eloquent\Collection $documents
  *
@@ -31,9 +31,11 @@ class DocumentType extends Eloquent
 		'description'
 	];
 
-	public function document_type_steps()
+	public function document_steps()
 	{
-		return $this->hasMany(\App\Models\DocumentTypeStep::class, 'type_id');
+		return $this->belongsToMany(\App\Models\DocumentStep::class, 'document_type_step', 'type_id', 'step_id')
+					->using(App\Models\DocumentTypeStep::class)
+					->withPivot('order');
 	}
 
 	public function document_versions()

@@ -7,7 +7,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\Relations\Pivot as Eloquent;
 
 /**
  * Class DocumentTypeStep
@@ -16,16 +16,13 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  * @property int $type_id
  * @property int $step_id
  * @property int $order
- * 
- * @property \App\Models\DocumentStep $document_step
- * @property \App\Models\DocumentType $document_type
  *
  * @package App\Models
  */
 class DocumentTypeStep extends Eloquent
 {
 	protected $table = 'document_type_step';
-	public $timestamps = false;
+	protected $timestamps = false;
 
 	protected $casts = [
 		'type_id' => 'int',
@@ -34,18 +31,6 @@ class DocumentTypeStep extends Eloquent
 	];
 
 	protected $fillable = [
-		'type_id',
-		'step_id',
 		'order'
 	];
-
-	public function document_step()
-	{
-		return $this->belongsTo(\App\Models\DocumentStep::class, 'step_id');
-	}
-
-	public function document_type()
-	{
-		return $this->belongsTo(\App\Models\DocumentType::class, 'type_id');
-	}
 }

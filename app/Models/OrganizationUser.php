@@ -7,7 +7,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\Relations\Pivot as Eloquent;
 
 /**
  * Class OrganizationUser
@@ -21,8 +21,6 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  * @property \Carbon\Carbon $updated_at
  * 
  * @property \App\Models\OrganizationUserLevel $organization_user_level
- * @property \App\Models\Organization $organization
- * @property \App\Models\User $user
  * @property \Illuminate\Database\Eloquent\Collection $document_approvals
  * @property \Illuminate\Database\Eloquent\Collection $document_comments
  * @property \Illuminate\Database\Eloquent\Collection $document_members
@@ -33,6 +31,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 class OrganizationUser extends Eloquent
 {
 	protected $table = 'organization_user';
+	protected $incrementing = true;
 
 	protected $casts = [
 		'user_id' => 'int',
@@ -45,24 +44,13 @@ class OrganizationUser extends Eloquent
 	];
 
 	protected $fillable = [
-		'user_id',
-		'organization_id',
-		'level_id'
+		'level_id',
+		'allowed_at'
 	];
 
 	public function organization_user_level()
 	{
 		return $this->belongsTo(\App\Models\OrganizationUserLevel::class, 'level_id');
-	}
-
-	public function organization()
-	{
-		return $this->belongsTo(\App\Models\Organization::class);
-	}
-
-	public function user()
-	{
-		return $this->belongsTo(\App\Models\User::class);
 	}
 
 	public function document_approvals()

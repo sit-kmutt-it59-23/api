@@ -28,6 +28,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  * 
  * @property \App\Models\OrganizationCategory $organization_category
  * @property \App\Models\OrganizationType $organization_type
+ * @property \Illuminate\Database\Eloquent\Collection $document_project_categories
  * @property \Illuminate\Database\Eloquent\Collection $documents
  * @property \Illuminate\Database\Eloquent\Collection $budgets
  * @property \Illuminate\Database\Eloquent\Collection $users
@@ -69,6 +70,15 @@ class Organization extends Eloquent
 		return $this->belongsTo(\App\Models\OrganizationType::class, 'type_id');
 	}
 
+	public function document_project_categories()
+	{
+		return $this->belongsToMany(\App\Models\DocumentProjectCategory::class, 'document_projects', 'organization_id', 'category_id')
+					->using(\App\Models\DocumentProject::class)
+					->as('projects')
+					->withPivot('name', 'name_en', 'budget_amount', 'start_at', 'end_at')
+					->withTimestamps();
+	}
+
 	public function documents()
 	{
 		return $this->hasMany(\App\Models\Document::class);
@@ -77,14 +87,18 @@ class Organization extends Eloquent
 	public function budgets()
 	{
 		return $this->belongsToMany(\App\Models\Budget::class, 'organization_budget')
-					->withPivot('id', 'amount', 'remaining_amount')
+					->using(\App\Models\OrganizationBudget::class)
+					->as('budget_histories')
+					->withPivot('amount', 'remaining_amount')
 					->withTimestamps();
 	}
 
 	public function users()
 	{
 		return $this->belongsToMany(\App\Models\User::class)
-					->withPivot('id', 'level_id')
+					->using(App\Models\OrganizationUser::class)
+					->as('members')
+					->withPivot('level_id', 'allowed_at')
 					->withTimestamps();
 	}
 }

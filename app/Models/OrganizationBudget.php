@@ -7,7 +7,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\Relations\Pivot as Eloquent;
 
 /**
  * Class OrganizationBudget
@@ -19,9 +19,6 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  * @property float $remaining_amount
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * 
- * @property \App\Models\Budget $budget
- * @property \App\Models\Organization $organization
  *
  * @package App\Models
  */
@@ -42,14 +39,4 @@ class OrganizationBudget extends Eloquent
 		'amount',
 		'remaining_amount'
 	];
-
-	public function budget()
-	{
-		return $this->belongsTo(\App\Models\Budget::class);
-	}
-
-	public function organization()
-	{
-		return $this->belongsTo(\App\Models\Organization::class);
-	}
 }

@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  * @property int $id
  * @property string $name
  * 
- * @property \Illuminate\Database\Eloquent\Collection $document_type_steps
+ * @property \Illuminate\Database\Eloquent\Collection $document_types
  *
  * @package App\Models
  */
@@ -27,8 +27,10 @@ class DocumentStep extends Eloquent
 		'name'
 	];
 
-	public function document_type_steps()
+	public function document_types()
 	{
-		return $this->hasMany(\App\Models\DocumentTypeStep::class, 'step_id');
+		return $this->belongsToMany(\App\Models\DocumentType::class, 'document_type_step', 'step_id', 'type_id')
+					->using(App\Models\DocumentTypeStep::class)
+					->withPivot('order');
 	}
 }
