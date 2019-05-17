@@ -1,8 +1,14 @@
 <?php
 
-use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
+use Faker\Factory as FakerFactory;
 use Faker\Generator as Faker;
+
+use App\Models\Role;
+use App\Models\User;
+use App\Models\UserDatum;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +23,52 @@ use Faker\Generator as Faker;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'remember_token' => Str::random(10),
+        'username' => $faker->userName,
+        'password' => bcrypt('1234'),
     ];
+})->afterCreating(User::class, function ($user, Faker $faker) {
+    $username = $user->username;
+    $user->user_datum()->create(factory(UserDatum::class)->make([
+        'student_id' => is_numeric($username) && strlen($username) == 11 ? $username : null
+    ])->toArray());
 });
+
+$factory->afterCreatingState(User::class, 'admin', function ($user, Faker $faker) {
+    $user->attachRole(Role::where('name', 'admin')->first());
+});
+
+$factory->afterCreatingState(User::class, 'president_vice_activity', function ($user, Faker $faker) {
+    $user->attachRole(Role::where('name', 'president_vice_activity')->first());
+});
+
+$factory->afterCreatingState(User::class, 'personel_stdaffair', function ($user, Faker $faker) {
+    $user->attachRole(Role::where('name', 'personel_stdaffair')->first());
+});
+
+$factory->afterCreatingState(User::class, 'personel', function ($user, Faker $faker) {
+    $user->attachRole(Role::where('name', 'personel')->first());
+});
+
+$factory->afterCreatingState(User::class, 'lecturer', function ($user, Faker $faker) {
+    $user->attachRole(Role::where('name', 'lecturer')->first());
+});
+
+$factory->state(User::class, 'student', [
+    'username' => function () {
+        return randomStudentNo();
+    }
+])->afterCreatingState(User::class, 'student', function ($user, Faker $faker) {
+    $user->attachRole(Role::where('name', 'student')->first());
+});
+
+function randomStudentNo() {
+    $faker = FakerFactory::create();
+
+    $yearBeTwoDigit = (Carbon::now()->year + 543) % 100;
+    $stdno = str_pad($faker->numberBetween($yearBeTwoDigit - 5, $yearBeTwoDigit - 1), 2, 0, STR_PAD_LEFT);
+    $stdno .= "99";
+    $stdno .= "05";
+    $stdno .= str_pad($faker->randomNumber(5), 5, 0, STR_PAD_LEFT);
+
+    return $stdno;
+}
