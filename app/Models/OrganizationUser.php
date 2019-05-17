@@ -31,7 +31,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot as Eloquent;
 class OrganizationUser extends Eloquent
 {
 	protected $table = 'organization_user';
-	protected $incrementing = true;
+	public $incrementing = true;
 
 	protected $casts = [
 		'user_id' => 'int',
