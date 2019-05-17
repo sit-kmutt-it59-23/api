@@ -96,7 +96,7 @@ class Organization extends Eloquent
 	public function users()
 	{
 		return $this->belongsToMany(\App\Models\User::class)
-					->using(App\Models\OrganizationUser::class)
+					->using(\App\Models\OrganizationUser::class)
 					->as('members')
 					->withPivot('level_id', 'allowed_at')
 					->withTimestamps();
