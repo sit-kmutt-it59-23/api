@@ -34,7 +34,7 @@ class DocumentType extends Eloquent
 	public function document_steps()
 	{
 		return $this->belongsToMany(\App\Models\DocumentStep::class, 'document_type_step', 'type_id', 'step_id')
-					->using(App\Models\DocumentTypeStep::class)
+					->using(\App\Models\DocumentTypeStep::class)
 					->withPivot('order');
 	}
 
