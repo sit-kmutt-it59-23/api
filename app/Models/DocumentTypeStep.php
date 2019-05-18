@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot as Eloquent;
 class DocumentTypeStep extends Eloquent
 {
 	protected $table = 'document_type_step';
-	protected $timestamps = false;
+	public $timestamps = false;
 
 	protected $casts = [
 		'type_id' => 'int',
