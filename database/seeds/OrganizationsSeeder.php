@@ -25,9 +25,9 @@ class OrganizationsSeeder extends Seeder
 
         $organization_categories = [
             ['name' => 'art'],
-            ['name' => 'educational'],
-            ['name' => 'sport'],
-            ['name' => 'community_service']
+            ['name' => 'academic'],
+            ['name' => 'community_service'],
+            ['name' => 'sport']
         ];      
         OrganizationCategory::insert($organization_categories);
 
