@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
             OrganizationsSeeder::class,
             UsersSeeder::class,
             OrganizationUsersSeeder::class,
-            DocumentSeeder::class,
+            DocumentsSeeder::class,
         ]);
     }
 }
