@@ -20,7 +20,7 @@ $factory->define(DocumentProject::class, function (Faker $faker) {
         'name' => $faker->sentence(6, true),
         'name_en' => $faker->sentence(6, true),
         'budget_amount' => $faker->randomFloat(2, 1000, 100000),
-        'start_at' => Carbon::now(),
-        'end_at' => $faker->dateTimeBetween('now', '+3 months')
+        'start_at' => Carbon::now()->setTime(00,00,00),
+        'end_at' => Carbon::createFromTimeStamp($faker->dateTimeBetween('now', '+3 months')->getTimestamp())->setTime(23,59,59)
     ];
 });
