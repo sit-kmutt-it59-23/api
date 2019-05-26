@@ -28,8 +28,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  * 
  * @property \App\Models\OrganizationCategory $organization_category
  * @property \App\Models\OrganizationType $organization_type
- * @property \Illuminate\Database\Eloquent\Collection $document_project_categories
- * @property \Illuminate\Database\Eloquent\Collection $documents
+ * @property \Illuminate\Database\Eloquent\Collection $document_projects
  * @property \Illuminate\Database\Eloquent\Collection $budgets
  * @property \Illuminate\Database\Eloquent\Collection $users
  *
@@ -46,7 +45,7 @@ class Organization extends Eloquent
 
 	protected $dates = [
 		'allowed_at',
-		'expired_at',
+		'expired_at'
 	];
 
 	protected $fillable = [
@@ -70,18 +69,9 @@ class Organization extends Eloquent
 		return $this->belongsTo(\App\Models\OrganizationType::class, 'type_id');
 	}
 
-	public function document_project_categories()
+	public function document_projects()
 	{
-		return $this->belongsToMany(\App\Models\DocumentProjectCategory::class, 'document_projects', 'organization_id', 'category_id')
-					->using(\App\Models\DocumentProject::class)
-					->as('projects')
-					->withPivot('name', 'name_en', 'budget_amount', 'start_at', 'end_at')
-					->withTimestamps();
-	}
-
-	public function documents()
-	{
-		return $this->hasMany(\App\Models\Document::class);
+		return $this->hasMany(\App\Models\DocumentProject::class);
 	}
 
 	public function budgets()

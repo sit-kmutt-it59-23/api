@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 
 use App\Models\DocumentProjectCategory;
+use App\Models\DocumentProject;
 use App\Models\DocumentStep;
 use App\Models\DocumentType;
 
@@ -63,5 +64,9 @@ class DocumentsSeeder extends Seeder
 
         $docSummaryReport->document_steps()->save($docAdvisorStep, ['order' => 1]);
         $docSummaryReport->document_steps()->save($docStdAffairStep, ['order' => 2]);
+
+        if (env('APP_ENV') == 'local') {
+            factory(DocumentProject::class, 40)->create();
+        }
     }
 }
