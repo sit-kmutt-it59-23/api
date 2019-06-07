@@ -10,7 +10,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class DocumentStepUser
+ * Class DocumentApprover
  * 
  * @property int $id
  * @property string $document_id
@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  *
  * @package App\Models
  */
-class DocumentStepUser extends Eloquent
+class DocumentApprover extends Eloquent
 {
 	protected $casts = [
 		'document_id' => 'int',
