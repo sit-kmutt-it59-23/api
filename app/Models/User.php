@@ -15,7 +15,7 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 /**
  * Class User
  * 
- * @property int $id
+ * @property string $id
  * @property string $username
  * @property string $password
  * @property string $remember_token
@@ -35,6 +35,9 @@ class User extends Authenticable
 	use Notifiable;
 	use SoftDeletable { restore as private restoreA; }
 	use EntrustUserTrait { restore as private restoreB; }
+
+	public $incrementing = false;
+	protected $keyType = 'string';
 
 	protected $hidden = [
 		'password',

@@ -12,8 +12,8 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 /**
  * Class Document
  * 
- * @property int $id
- * @property int $project_id
+ * @property string $id
+ * @property string $project_id
  * @property int $type_id
  * @property int $version_id
  * @property string $name
@@ -35,6 +35,9 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  */
 class Document extends Eloquent
 {
+	public $incrementing = false;
+	protected $keyType = 'string';
+	
 	protected $casts = [
 		'project_id' => 'int',
 		'type_id' => 'int',

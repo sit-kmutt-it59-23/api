@@ -13,8 +13,8 @@ use Illuminate\Database\Eloquent\Relations\Pivot as Eloquent;
  * Class OrganizationBudget
  * 
  * @property int $id
- * @property int $organization_id
- * @property int $budget_id
+ * @property string $budget_id
+ * @property string $organization_id
  * @property float $amount
  * @property float $remaining_amount
  * @property \Carbon\Carbon $created_at

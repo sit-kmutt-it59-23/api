@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  * Class DocumentStepUser
  * 
  * @property int $id
- * @property int $document_id
+ * @property string $document_id
  * @property int $user_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at

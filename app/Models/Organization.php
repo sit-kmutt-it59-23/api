@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 /**
  * Class Organization
  * 
- * @property int $id
+ * @property string $id
  * @property int $type_id
  * @property int $category_id
  * @property string $name
@@ -37,6 +37,9 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 class Organization extends Eloquent
 {
 	use \Illuminate\Database\Eloquent\SoftDeletes;
+
+	public $incrementing = false;
+	protected $keyType = 'string';
 
 	protected $casts = [
 		'type_id' => 'int',

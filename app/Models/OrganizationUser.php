@@ -13,8 +13,8 @@ use Illuminate\Database\Eloquent\Relations\Pivot as Eloquent;
  * Class OrganizationUser
  * 
  * @property int $id
- * @property int $user_id
- * @property int $organization_id
+ * @property string $user_id
+ * @property string $organization_id
  * @property int $level_id
  * @property \Carbon\Carbon $allowed_at
  * @property \Carbon\Carbon $created_at

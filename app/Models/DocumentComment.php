@@ -35,6 +35,9 @@ class DocumentComment extends Eloquent
 		'children_of' => 'int'
 	];
 
+	public $incrementing = false;
+	protected $keyType = 'string';
+	
 	protected $fillable = [
 		'document_id',
 		'user_id',
