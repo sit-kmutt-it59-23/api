@@ -153,6 +153,7 @@ class CreateDocumentTables extends Migration
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
                 );
             
+            $table->unique(['document_id', 'user_id']);
             $table->foreign('document_id')->references('id')->on('documents')
                 ->onUpdate('restrict')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('organization_user')
