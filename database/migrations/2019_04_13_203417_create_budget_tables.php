@@ -27,7 +27,7 @@ class CreateBudgetTables extends Migration
                 );
         });
 
-        Schema::create('organization_budget', function (Blueprint $table) {
+        Schema::create('budget_organization', function (Blueprint $table) {
             $table->uuid('budget_id');
             $table->uuid('organization_id');
             $table->float('amount');
