@@ -16,7 +16,7 @@ class CreateUserTables extends Migration
         DB::beginTransaction();
 
         Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id')->unsigned();
+            $table->uuid('id')->primary();
             $table->string('username', 32)->unique();
             $table->string('password', 255);
             $table->rememberToken();
@@ -29,7 +29,7 @@ class CreateUserTables extends Migration
         });
 
         Schema::create('user_data', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
+            $table->uuid('user_id')->primary();
             $table->string('first_name', 64);
             $table->string('middle_name', 64)->nullable();
             $table->string('last_name', 64);
@@ -43,8 +43,6 @@ class CreateUserTables extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('restrict')->onDelete('cascade');
-            
-            $table->primary('user_id');
         });
 
         DB::commit();

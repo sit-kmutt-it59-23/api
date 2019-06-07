@@ -16,7 +16,7 @@ class CreateBudgetTables extends Migration
         DB::beginTransaction();
 
         Schema::create('budgets', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
+            $table->uuid('id')->primary();
             $table->year('edu_year');
             $table->float('amount');
             $table->float('remaining_amount');
@@ -28,8 +28,8 @@ class CreateBudgetTables extends Migration
         });
 
         Schema::create('organization_budget', function (Blueprint $table) {
-            $table->unsignedInteger('organization_id');
-            $table->unsignedInteger('budget_id');
+            $table->uuid('budget_id');
+            $table->uuid('organization_id');
             $table->float('amount');
             $table->float('remaining_amount');
             $table->datetime('created_at')->useCurrent();

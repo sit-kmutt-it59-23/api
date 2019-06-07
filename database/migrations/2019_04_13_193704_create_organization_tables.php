@@ -26,7 +26,7 @@ class CreateOrganizationTables extends Migration
         });
 
         Schema::create('organizations', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
+            $table->uuid('id')->primary();
             $table->unsignedInteger('type_id');
             $table->unsignedInteger('category_id')->nullable();
             $table->string('name');
@@ -56,8 +56,8 @@ class CreateOrganizationTables extends Migration
 
         Schema::create('organization_user', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedInteger('organization_id');
+            $table->uuid('organization_id');
+            $table->uuid('user_id');
             $table->unsignedInteger('level_id');
             $table->datetime('allowed_at')->nullable();
             $table->datetime('created_at')->useCurrent();
