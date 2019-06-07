@@ -142,7 +142,7 @@ class CreateDocumentTables extends Migration
                 ->onUpdate('restrict')->onDelete('cascade');
         });
 
-        Schema::create('document_step_users', function (Blueprint $table) {
+        Schema::create('document_approvers', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
             $table->uuid('document_id');
