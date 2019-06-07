@@ -106,7 +106,7 @@ class CreateDocumentTables extends Migration
             $table->uuid('id')->primary();
             $table->uuid('project_id');
             $table->unsignedInteger('type_id');
-            $table->unsignedInteger('version_id');
+            $table->unsignedInteger('version_id')->nullable();
             $table->string('name');
             $table->string('name_en')->nullable();
             $table->json('data');
