@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  * @property string $description
  * @property string $slogan
  * @property string $logo_path
+ * @property boolean $is_allowed 
  * @property \Carbon\Carbon $allowed_at
  * @property \Carbon\Carbon $expired_at
  * @property string $deleted_at
@@ -43,7 +44,8 @@ class Organization extends Eloquent
 
 	protected $casts = [
 		'type_id' => 'int',
-		'category_id' => 'int'
+		'category_id' => 'int',
+		'is_allowed' => 'boolean'
 	];
 
 	protected $dates = [
