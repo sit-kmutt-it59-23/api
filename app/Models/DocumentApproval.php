@@ -29,7 +29,7 @@ class DocumentApproval extends Eloquent
 	protected $casts = [
 		'document_id' => 'int',
 		'user_id' => 'int',
-		'is_passed' => 'bool'
+		'is_passed' => 'boolean'
 	];
 
 	protected $fillable = [
