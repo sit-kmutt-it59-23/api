@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 /**
  * Class UserDatum
  * 
- * @property int $user_id
+ * @property string $user_id
  * @property string $first_name
  * @property string $middle_name
  * @property string $last_name
@@ -45,6 +45,7 @@ class UserDatum extends Eloquent
 {
 	protected $primaryKey = 'user_id';
 	public $incrementing = false;
+	protected $keyType = 'string';
 
 	protected $casts = [
 		'score_gpa' => 'decimal:2'

@@ -47,7 +47,6 @@ class OrganizationUser extends Eloquent
 
 	protected $fillable = [
 		'level_id',
-		'allowed_at'
 	];
 
 	public function organization_user_level()
