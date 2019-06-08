@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot as Eloquent;
  * @property string $user_id
  * @property string $organization_id
  * @property int $level_id
+ * @property boolean $is_allowed
  * @property \Carbon\Carbon $allowed_at
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
@@ -36,7 +37,8 @@ class OrganizationUser extends Eloquent
 	protected $casts = [
 		'user_id' => 'int',
 		'organization_id' => 'int',
-		'level_id' => 'int'
+		'level_id' => 'int',
+		'is_allowed' => 'boolean'
 	];
 
 	protected $dates = [
