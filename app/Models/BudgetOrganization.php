@@ -37,6 +37,5 @@ class BudgetOrganization extends Eloquent
 		'organization_id',
 		'budget_id',
 		'amount',
-		'remaining_amount'
 	];
 }
