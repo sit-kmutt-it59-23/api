@@ -60,8 +60,7 @@ class Organization extends Eloquent
 		'name_en',
 		'description',
 		'slogan',
-		'logo_path',
-		'expired_at'
+		'logo_path'
 	];
 
 	public function organization_category()
