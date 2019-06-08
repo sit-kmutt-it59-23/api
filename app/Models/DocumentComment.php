@@ -29,12 +29,6 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  */
 class DocumentComment extends Eloquent
 {
-	protected $casts = [
-		'document_id' => 'int',
-		'user_id' => 'int',
-		'children_of' => 'int'
-	];
-
 	public $incrementing = false;
 	protected $keyType = 'string';
 	

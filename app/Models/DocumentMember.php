@@ -25,11 +25,6 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  */
 class DocumentMember extends Eloquent
 {
-	protected $casts = [
-		'document_id' => 'int',
-		'user_id' => 'int'
-	];
-
 	protected $fillable = [
 		'document_id',
 		'user_id'
