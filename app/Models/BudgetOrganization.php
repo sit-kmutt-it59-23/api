@@ -10,7 +10,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\Pivot as Eloquent;
 
 /**
- * Class OrganizationBudget
+ * Class BudgetOrganization
  * 
  * @property int $id
  * @property string $budget_id
@@ -22,9 +22,9 @@ use Illuminate\Database\Eloquent\Relations\Pivot as Eloquent;
  *
  * @package App\Models
  */
-class OrganizationBudget extends Eloquent
+class BudgetOrganization extends Eloquent
 {
-	protected $table = 'organization_budget';
+	protected $table = 'budget_organization';
 
 	protected $casts = [
 		'organization_id' => 'int',
