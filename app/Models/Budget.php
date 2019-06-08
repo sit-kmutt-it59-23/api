@@ -39,8 +39,7 @@ class Budget extends Eloquent
 
 	protected $fillable = [
 		'edu_year',
-		'amount',
-		'remaining_amount'
+		'amount'
 	];
 
 	public function organizations()
