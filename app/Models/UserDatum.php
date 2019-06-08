@@ -16,8 +16,24 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  * @property string $first_name
  * @property string $middle_name
  * @property string $last_name
+ * @property string $first_name_th
+ * @property string $middle_name_th
+ * @property string $last_name_th
  * @property string $student_id
+ * @property string $study_major_code
+ * @property float $score_gpa
+ * @property string $activity_experience
+ * @property string $addr_street_1
+ * @property string $addr_street_2
+ * @property string $addr_sub_district
+ * @property string $addr_district
+ * @property string $addr_state
+ * @property string $addr_postal_code
+ * @property string $addr_country
  * @property string $tel_no
+ * @property string $email
+ * @property string $image_path_official
+ * @property string $image_path_profil
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * 
@@ -31,14 +47,27 @@ class UserDatum extends Eloquent
 	public $incrementing = false;
 
 	protected $casts = [
-		'user_id' => 'int'
+		'score_gpa' => 'decimal:2'
 	];
 
 	protected $fillable = [
-		'first_name',
-		'middle_name',
-		'last_name',
-		'tel_no'
+		'first_name_th',
+		'middle_name_th',
+		'last_name_th',
+		'study_major_code',
+		'score_gpa',
+		'activity_experience',
+		'addr_street_1',
+		'addr_street_2',
+		'addr_sub_district',
+		'addr_district',
+		'addr_state',
+		'addr_postal_code',
+		'addr_country',
+		'tel_no',
+		'email',
+		'image_path_official',
+		'image_path_profile'
 	];
 
 	public function user()
