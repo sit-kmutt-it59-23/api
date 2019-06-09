@@ -178,12 +178,11 @@ class CreateDocumentTables extends Migration
         });
 
         Schema::create('document_comments', function (Blueprint $table) {
-            $table->bigInteger('document_id')->unsigned();
             $table->uuid('id')->primary();
             $table->uuid('document_id');
             $table->unsignedBigInteger('user_id');
             $table->longText('data');
-            $table->bigInteger('children_of')->unsigned()->nullable();
+            $table->uuid('children_of')->nullable();
             $table->datetime('created_at')->useCurrent();
             $table->datetime('updated_at')
                 ->default(
