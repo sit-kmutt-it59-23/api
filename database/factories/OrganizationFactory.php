@@ -18,6 +18,7 @@ $factory->define(Organization::class, function (Faker $faker) use ($fakerTh) {
         'name_en' => $faker->company,
         'description' => $faker->realText('255'),
         'slogan' => $faker->catchPhrase,
+        'is_allowed' => true,
         'allowed_at' => $faker->dateTimeBetween('-1 month', 'now'),
         'expired_at' => $faker->dateTimeBetween('-1 months', '1 months')
     ];
