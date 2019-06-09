@@ -55,6 +55,7 @@ class UserDatum extends Eloquent
 		'first_name_th',
 		'middle_name_th',
 		'last_name_th',
+		'nationality',
 		'study_major_code',
 		'score_gpa',
 		'activity_experience',

@@ -36,6 +36,7 @@ class CreateUserTables extends Migration
             $table->string('first_name_th', 64)->nullable();
             $table->string('middle_name_th', 64)->nullable();
             $table->string('last_name_th', 64)->nullable();
+            $table->string('nationality', 64);
             $table->string('student_id', 11)->nullable()->unique();
             $table->string('study_major_code', 9)->nullable(); 
             $table->decimal('score_gpa', 4, 2)->unsigned()->nullable();
