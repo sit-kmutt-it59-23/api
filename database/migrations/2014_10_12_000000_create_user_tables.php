@@ -47,7 +47,7 @@ class CreateUserTables extends Migration
             $table->string('addr_state', 64);
             $table->string('addr_postal_code', 16);
             $table->string('addr_country', 64)->nullable();
-            $table->string('tel_no', 15)->nullable();
+            $table->string('tel_no', 16)->nullable();
             $table->string('email');
             $table->string('image_path_official')->nullable();
             $table->string('image_path_profile')->nullable();
