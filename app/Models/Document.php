@@ -9,6 +9,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
+use App\Traits\UsesUuidTrait;
+
 /**
  * Class Document
  * 
@@ -35,6 +37,8 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  */
 class Document extends Eloquent
 {
+	use UsesUuidTrait;
+	
 	public $incrementing = false;
 	protected $keyType = 'string';
 	

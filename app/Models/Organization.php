@@ -9,6 +9,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
+use App\Traits\UsesUuidTrait;
+
 /**
  * Class Organization
  * 
@@ -38,6 +40,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 class Organization extends Eloquent
 {
 	use \Illuminate\Database\Eloquent\SoftDeletes;
+	use UsesUuidTrait;
 
 	public $incrementing = false;
 	protected $keyType = 'string';
