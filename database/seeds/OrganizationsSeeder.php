@@ -40,6 +40,8 @@ class OrganizationsSeeder extends Seeder
             ['name' => 'officer_treasurer'], //เหรัญญิก
             ['name' => 'officer_supply'], //พัสดุ
             ['name' => 'officer_secretary'], //เลขานุการ
+            ['name' => 'officer_secretary'], //เลขานุการ
+            ['name' => 'officer_quality_assurance'], //ประกันคุณภาพ
             ['name' => 'member'], //สมาชิก
         ];
         OrganizationUserLevel::insert($organization_user_levels);

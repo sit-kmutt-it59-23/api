@@ -10,10 +10,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class DocumentStepUser
+ * Class DocumentApprover
  * 
  * @property int $id
- * @property int $document_id
+ * @property string $document_id
  * @property int $user_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
@@ -23,13 +23,8 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  *
  * @package App\Models
  */
-class DocumentStepUser extends Eloquent
+class DocumentApprover extends Eloquent
 {
-	protected $casts = [
-		'document_id' => 'int',
-		'user_id' => 'int'
-	];
-
 	protected $fillable = [
 		'document_id',
 		'user_id'

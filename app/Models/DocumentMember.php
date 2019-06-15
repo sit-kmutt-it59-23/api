@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  * Class DocumentMember
  * 
  * @property int $id
- * @property int $document_id
+ * @property string $document_id
  * @property int $user_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
@@ -25,11 +25,6 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  */
 class DocumentMember extends Eloquent
 {
-	protected $casts = [
-		'document_id' => 'int',
-		'user_id' => 'int'
-	];
-
 	protected $fillable = [
 		'document_id',
 		'user_id'

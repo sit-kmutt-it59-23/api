@@ -9,10 +9,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
+use App\Traits\UsesUuidTrait;
+
 /**
  * Class Organization
  * 
- * @property int $id
+ * @property string $id
  * @property int $type_id
  * @property int $category_id
  * @property string $name
@@ -20,6 +22,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  * @property string $description
  * @property string $slogan
  * @property string $logo_path
+ * @property boolean $is_allowed 
  * @property \Carbon\Carbon $allowed_at
  * @property \Carbon\Carbon $expired_at
  * @property string $deleted_at
@@ -37,10 +40,15 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 class Organization extends Eloquent
 {
 	use \Illuminate\Database\Eloquent\SoftDeletes;
+	use UsesUuidTrait;
+
+	public $incrementing = false;
+	protected $keyType = 'string';
 
 	protected $casts = [
 		'type_id' => 'int',
-		'category_id' => 'int'
+		'category_id' => 'int',
+		'is_allowed' => 'boolean'
 	];
 
 	protected $dates = [
@@ -55,8 +63,7 @@ class Organization extends Eloquent
 		'name_en',
 		'description',
 		'slogan',
-		'logo_path',
-		'expired_at'
+		'logo_path'
 	];
 
 	public function organization_category()

@@ -4,11 +4,14 @@
  * Date: Sat, 11 May 2019 14:50:03 +0700.
  */
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model as Eloquent;
+
+use App\Traits\UsesUuidTrait;
 /**
  * Class DocumentProject
  * 
- * @property int $id
+ * @property string $id
  * @property int $organization_id
  * @property int $category_id
  * @property string $name
@@ -27,6 +30,11 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  */
 class DocumentProject extends Eloquent
 {
+	use UsesUuidTrait;
+	
+	public $incrementing = false;
+	protected $keyType = 'string';
+	
 	protected $casts = [
 		'organization_id' => 'int',
 		'category_id' => 'int',
