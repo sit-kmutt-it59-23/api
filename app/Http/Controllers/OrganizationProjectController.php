@@ -15,7 +15,7 @@ class OrganizationProjectController extends Controller
      */
     public function index($id)
     {
-        return Organization::find($id)->document_projects;
+        return Organization::findOrFail($id)->document_projects;
     }
 
     /**
